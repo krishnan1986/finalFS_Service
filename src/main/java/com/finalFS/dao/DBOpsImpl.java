@@ -1,0 +1,38 @@
+package com.finalFS.dao;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.finalFS.model.User;
+import com.finalFS.util.HibernateUtil;
+
+public class DBOpsImpl implements DBOperations {
+	@Autowired
+	HibernateUtil hibernateUtil;
+	
+	Transaction tx;
+	Session session;
+	SessionFactory sessionfactory;
+	
+	
+	@Override
+	public void addUser(User user) {
+		// TODO Auto-generated method stub
+		setup();
+		session.save(user);
+		tx.commit();
+		session.close();
+		
+	}
+	
+	public void setup()
+	{
+		 sessionfactory= HibernateUtil.getSessionFactory();
+		 session= sessionfactory.openSession(); // create new session
+
+		 tx=session.beginTransaction();
+	}
+
+}
