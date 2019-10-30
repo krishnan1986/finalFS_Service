@@ -4,10 +4,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.finalFS.model.User;
 import com.finalFS.util.HibernateUtil;
 
+@Component
 public class DBOpsImpl implements DBOperations {
 	@Autowired
 	HibernateUtil hibernateUtil;

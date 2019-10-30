@@ -1,16 +1,28 @@
 package com.finalFS.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="user")
 public class User {
 	
+	@Id
+	@Column(name="user_id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
+	
+	@Column(name="firstName")
 	private String firstName;
 	
+	@Column(name="lastName")
 	private String lastName;
-	
+
+	@Column(name="empId")
 	private String employeeID;
 
 	public String getFirstName() {
