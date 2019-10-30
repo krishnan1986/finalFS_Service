@@ -11,6 +11,8 @@ import com.finalFS.util.HibernateUtil;
 
 @Component
 public class DBOpsImpl implements DBOperations {
+	
+
 	@Autowired
 	HibernateUtil hibernateUtil;
 	
@@ -28,7 +30,25 @@ public class DBOpsImpl implements DBOperations {
 		session.close();
 		
 	}
+
 	
+	@Override
+	public User getUserbyid(Long id) {
+		// TODO Auto-generated method stub
+		setup();
+		User user= (User)session.get(User.class, id);
+		return user;
+	}
+	@Override
+	public void updateUser(User user) {
+		// TODO Auto-generated method stub
+		setup();
+		session.update(user);
+		tx.commit();
+		session.close();
+	}
+
+
 	public void setup()
 	{
 		 sessionfactory= HibernateUtil.getSessionFactory();
