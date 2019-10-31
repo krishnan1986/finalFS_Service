@@ -25,7 +25,7 @@
 
 
  <mapping class="com.finalFS.model.User"/>
-
+<mapping class="com.finalFS.model.Project"/>
 
 <!-- 
 <mapping class="com.examples.hibernateexamples.EmployeeSSN"/> 
