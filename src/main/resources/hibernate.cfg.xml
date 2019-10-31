@@ -27,6 +27,9 @@
  <mapping class="com.finalFS.model.User"/>
 <mapping class="com.finalFS.model.Project"/>
 
+ <mapping class="com.finalFS.model.Task"/>
+<mapping class="com.finalFS.model.ParentTask"/> 
+
 <!-- 
 <mapping class="com.examples.hibernateexamples.EmployeeSSN"/> 
 <mapping class="com.examples.hibernateexamples.Address"/> 
