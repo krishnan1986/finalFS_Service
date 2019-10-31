@@ -9,4 +9,6 @@ public interface DBOperations {
 	public User getUserbyid(Long id);
 	
 	public void updateUser(User user);
+	
+	public void deleteUser(User user);
 }

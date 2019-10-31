@@ -49,6 +49,17 @@ public class DBOpsImpl implements DBOperations {
 	}
 
 
+	@Override
+	public void deleteUser(User user) {
+		// TODO Auto-generated method stub
+		setup();
+		session.delete(user);
+		tx.commit();
+		session.close();
+		
+	}
+
+
 	public void setup()
 	{
 		 sessionfactory= HibernateUtil.getSessionFactory();
