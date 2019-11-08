@@ -1,5 +1,6 @@
 package com.finalFS.dao;
 
+import com.finalFS.model.Project;
 import com.finalFS.model.User;
 
 public interface DBOperations {
@@ -11,4 +12,6 @@ public interface DBOperations {
 	public void updateUser(User user);
 	
 	public void deleteUser(User user);
+	
+	public void addProject(Project project);
 }

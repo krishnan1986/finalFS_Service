@@ -6,6 +6,7 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.finalFS.model.Project;
 import com.finalFS.model.User;
 import com.finalFS.util.HibernateUtil;
 
@@ -54,6 +55,16 @@ public class DBOpsImpl implements DBOperations {
 		// TODO Auto-generated method stub
 		setup();
 		session.delete(user);
+		tx.commit();
+		session.close();
+		
+	}
+
+
+	@Override
+	public void addProject(Project project) {
+		setup();
+		session.save(project);
 		tx.commit();
 		session.close();
 		
