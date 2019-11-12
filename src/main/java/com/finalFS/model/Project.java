@@ -67,11 +67,22 @@ public class Project {
 	@Column(name="start_date")
 	private Date startDate;
 	
+	public String getManager() {
+		return manager;
+	}
+
+	public void setManager(String manager) {
+		this.manager = manager;
+	}
+
 	@Column(name="prio")
 	private String priority;
 	
 	@Column(name="end_date")
 	private Date endDate;
+	
+	@Column(name="manager")
+	private String manager;
 	
 	@OneToMany
 	@JoinColumn(name="PROJECT_ID")

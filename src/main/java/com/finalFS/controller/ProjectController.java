@@ -32,6 +32,7 @@ public class ProjectController {
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 				p.setStartDate(format.parse(project.get("StartDate")));
 				p.setEndDate(format.parse(project.get("endDate")));
+				p.setManager(project.get("managerName"));
 				dbo.addProject(p);
 	}
 	
