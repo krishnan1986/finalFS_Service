@@ -1,5 +1,7 @@
 package com.finalFS.dao;
 
+import java.util.List;
+
 import com.finalFS.model.Project;
 import com.finalFS.model.User;
 
@@ -14,4 +16,5 @@ public interface DBOperations {
 	public void deleteUser(User user);
 	
 	public void addProject(Project project);
+	public List<Project> fetchProjects();
 }

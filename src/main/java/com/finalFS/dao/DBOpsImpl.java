@@ -1,5 +1,8 @@
 package com.finalFS.dao;
 
+import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -68,6 +71,18 @@ public class DBOpsImpl implements DBOperations {
 		tx.commit();
 		session.close();
 		
+	}
+
+
+	@Override
+	public List<Project> fetchProjects() {
+		// TODO Auto-generated method stub
+		setup();
+		String hql= "FROM Project";
+		Query query =  session.createQuery(hql);
+		List<Project> results = query.list();
+		
+		return results;
 	}
 
 
