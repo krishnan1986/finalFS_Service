@@ -55,6 +55,14 @@ public class Task {
 	@JoinColumn(name="PROJECT_ID")
 	private Project project;
 
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
+	}
+
 	public ParentTask getPtask() {
 		return parentTask;
 	}

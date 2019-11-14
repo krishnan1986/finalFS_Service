@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.finalFS.dao.TaskDao;
 import com.finalFS.model.ParentTask;
+import com.finalFS.model.Project;
 import com.finalFS.model.Task;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -45,7 +47,10 @@ public ResponseEntity<String> addTask(@RequestBody Map<String,String> task,HttpS
 {
 		Task requestTask = new Task();
 		ParentTask pt = new ParentTask();
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Project pmodel =new Project();
+		pmodel.setName(task.get("selectedProjectName"));
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		requestTask.setName((String) task.get("taskname"));
 		try {
 			requestTask.setStartDate(sdf.parse((String) (task.get("startDate"))));
@@ -54,8 +59,8 @@ public ResponseEntity<String> addTask(@RequestBody Map<String,String> task,HttpS
 			requestTask.setPriority(Integer.valueOf (task.get("Priority")));
 			// get the project id from project name
 		  Long foreignkey=taskdao.getProjectId(task.get("selectedProjectName"));
-		  
-		  
+		  pmodel.setPid(foreignkey);
+		  requestTask.setProject(pmodel);
 		  
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
