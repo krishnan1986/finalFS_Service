@@ -53,7 +53,8 @@ public ResponseEntity<String> addTask(@RequestBody Map<String,String> task,HttpS
 			pt.setName((String) task.get("parentTask"));
 			requestTask.setPriority(Integer.valueOf (task.get("Priority")));
 			// get the project id from project name
-		  taskdao.getProjectId(task.get("selectedProjectName"));
+		  Long foreignkey=taskdao.getProjectId(task.get("selectedProjectName"));
+		  
 		  
 		  
 		} catch (ParseException e) {

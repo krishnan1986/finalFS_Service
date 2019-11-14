@@ -50,6 +50,10 @@ public class Task {
 	//@JsonIgnore
 	@JsonManagedReference
 	private ParentTask parentTask;
+	
+	@ManyToOne
+	@JoinColumn(name="PROJECT_ID")
+	private Project project;
 
 	public ParentTask getPtask() {
 		return parentTask;
