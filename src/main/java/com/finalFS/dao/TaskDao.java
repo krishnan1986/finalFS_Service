@@ -11,6 +11,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.finalFS.model.Project;
 import com.finalFS.model.Task;
 import com.finalFS.util.HibernateUtil;
 @Component
@@ -105,6 +106,17 @@ public class TaskDao implements TaskOperations {
 	}
 
 	
+	@Override
+	public Long getProjectId(String name) {
+		// TODO Auto-generated method stub
+		setup();
+		String hql = "SELECT pid FROM Project WHERE name=:projectname";
+		Query query =session.createQuery(hql);
+		query.setParameter("projectname", name);
+		  
+		return (Long) query.uniqueResult();
+	}
+
 	public void deleteTask(String taskname)
 	{
 		setup();

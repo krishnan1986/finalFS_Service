@@ -51,7 +51,11 @@ public ResponseEntity<String> addTask(@RequestBody Map<String,String> task,HttpS
 			requestTask.setStartDate(sdf.parse((String) (task.get("startDate"))));
 			requestTask.setEndDate(sdf.parse((String) task.get("endDate")));
 			pt.setName((String) task.get("parentTask"));
-			requestTask.setPriority(Integer.valueOf(task.get("Priority")));
+			requestTask.setPriority(Integer.valueOf (task.get("Priority")));
+			// get the project id from project name
+		  taskdao.getProjectId(task.get("selectedProjectName"));
+		  
+		  
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
