@@ -86,6 +86,18 @@ public class DBOpsImpl implements DBOperations {
 	}
 
 
+	@Override
+	public List<User> fetchUsers() {
+		// TODO Auto-generated method stub
+		setup();
+		String hql= "FROM User";
+		Query query =  session.createQuery(hql);
+		List<User> results = query.list();
+		
+		return results;
+	}
+
+
 	public void setup()
 	{
 		 sessionfactory= HibernateUtil.getSessionFactory();

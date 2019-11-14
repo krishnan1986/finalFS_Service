@@ -17,4 +17,6 @@ public interface DBOperations {
 	
 	public void addProject(Project project);
 	public List<Project> fetchProjects();
+	
+	public List<User> fetchUsers();
 }

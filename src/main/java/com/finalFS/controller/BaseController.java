@@ -1,5 +1,6 @@
 package com.finalFS.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.finalFS.dao.DBOperations;
+import com.finalFS.model.Project;
 import com.finalFS.model.User;
 
 @RestController
@@ -59,6 +61,18 @@ public class BaseController {
 	 User dbuser=daoObj.getUserbyid(id);
 		daoObj.deleteUser(dbuser);
 	}
+	
+	@CrossOrigin(origins = "http://localhost:4200")
+	@GetMapping(path="/viewUsers",produces="application/json")
+    //          @RequestMapping(value = "/tasks", method = RequestMethod.GET, produces = "application/json")
+public  List<User> getUsersFromUI()
+{ 
+
+	List<User> results =daoObj.fetchUsers();
+	//list.setTasks(results);
+  return results;
+	
+}
 	
 	
 	
