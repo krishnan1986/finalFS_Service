@@ -55,10 +55,14 @@ public ResponseEntity<String> addTask(@RequestBody Map<String,String> task,HttpS
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		requestTask.setName((String) task.get("taskname"));
 		try {
+			if(task.containsKey("startDate")) {
 			requestTask.setStartDate(sdf.parse((String) (task.get("startDate"))));
 			requestTask.setEndDate(sdf.parse((String) task.get("endDate")));
-			pt.setName((String) task.get("parentTask"));
 			requestTask.setPriority(Integer.valueOf (task.get("Priority")));
+			}
+			else {
+			pt.setName(((String) task.get("parentTask")));
+			
 			// get the project id from project name
 		  Long foreignkey=taskdao.getProjectId(task.get("selectedProjectName"));
 		  pmodel.setPid(foreignkey);
@@ -71,7 +75,8 @@ public ResponseEntity<String> addTask(@RequestBody Map<String,String> task,HttpS
 		  user.setProject(pmodel);
 		  requestTask.setUser(user);
 		  requestTask.setProject(pmodel);
-		  
+		  requestTask.setPtask(pt);
+			}
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

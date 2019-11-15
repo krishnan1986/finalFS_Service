@@ -12,6 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -46,6 +49,7 @@ public class Task {
 	@JoinColumn(name="parent_task_id")
 	//@JsonIgnore
 	@JsonManagedReference
+	@Cascade(CascadeType.ALL)
 	private ParentTask parentTask;
 	
 	@ManyToOne
