@@ -1,7 +1,5 @@
 package com.finalFS.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,11 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -54,7 +51,12 @@ public class Task {
 	@ManyToOne
 	@JoinColumn(name="PROJECT_ID")
 	private Project project;
+	
 
+	@OneToOne
+	@JoinColumn(name="user_id")
+	private User user;
+	
 	public Project getProject() {
 		return project;
 	}

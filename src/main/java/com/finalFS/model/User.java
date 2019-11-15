@@ -1,11 +1,15 @@
 package com.finalFS.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -59,10 +63,16 @@ public class User {
 		this.employeeID = employeeID;
 	}
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="project_id")
 	private Project project;
+	
 
+	@OneToOne
+	@JoinColumn(name="task_id")
+	private Task task;
+	
+	
 	public Project getProject() {
 		return project;
 	}

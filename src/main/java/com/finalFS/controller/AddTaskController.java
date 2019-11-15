@@ -60,6 +60,7 @@ public ResponseEntity<String> addTask(@RequestBody Map<String,String> task,HttpS
 			// get the project id from project name
 		  Long foreignkey=taskdao.getProjectId(task.get("selectedProjectName"));
 		  pmodel.setPid(foreignkey);
+		  
 		  requestTask.setProject(pmodel);
 		  
 		} catch (ParseException e) {

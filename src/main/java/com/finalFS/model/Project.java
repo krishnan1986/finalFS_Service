@@ -1,6 +1,7 @@
 package com.finalFS.model;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -11,9 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name="project")
@@ -90,4 +88,9 @@ public class Project {
 	@OneToMany
 	@JoinColumn(name="PROJECT_ID")
     private Set<Task> tasks;
+	
+	
+	@OneToMany
+	@JoinColumn(name="project_id")
+	private List<User> users;
 }
