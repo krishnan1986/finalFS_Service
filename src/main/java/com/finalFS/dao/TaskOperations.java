@@ -15,5 +15,7 @@ public interface TaskOperations {
 	public Long getProjectId(String name);
 	
 	public Long getUserId(String name);
+	
+	public List<Task> getTasksByProjectName(String name);
 
 }

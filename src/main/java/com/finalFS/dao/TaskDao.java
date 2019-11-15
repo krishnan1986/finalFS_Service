@@ -118,6 +118,19 @@ public class TaskDao implements TaskOperations {
 	}
 
 	@Override
+	public List<Task> getTasksByProjectName(String name) {
+		// TODO Auto-generated method stub
+		setup();
+		// get id 
+		Long pid=getProjectId(name);
+		String hql = "FROM Task WHERE PROJECT_ID=:pid";
+		Query query =session.createQuery(hql);
+		query.setParameter("pid", pid);
+		List<Task> results= query.list();
+		return results;
+	}
+
+	@Override
 	public Long getUserId(String fname) {
 		// TODO Auto-generated method stub
 		setup();
