@@ -117,6 +117,17 @@ public class TaskDao implements TaskOperations {
 		return (Long) query.uniqueResult();
 	}
 
+	@Override
+	public Long getUserId(String fname) {
+		// TODO Auto-generated method stub
+		setup();
+		String hql = "SELECT id FROM User WHERE firstName=:firstName";
+		Query query =session.createQuery(hql);
+		query.setParameter("firstName", fname);
+		  
+		return (Long) query.uniqueResult();
+	}
+
 	public void deleteTask(String taskname)
 	{
 		setup();

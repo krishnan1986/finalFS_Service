@@ -19,6 +19,7 @@ import com.finalFS.dao.TaskDao;
 import com.finalFS.model.ParentTask;
 import com.finalFS.model.Project;
 import com.finalFS.model.Task;
+import com.finalFS.model.User;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -48,6 +49,7 @@ public ResponseEntity<String> addTask(@RequestBody Map<String,String> task,HttpS
 		Task requestTask = new Task();
 		ParentTask pt = new ParentTask();
 		Project pmodel =new Project();
+		User user = new User();
 		pmodel.setName(task.get("selectedProjectName"));
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -60,7 +62,14 @@ public ResponseEntity<String> addTask(@RequestBody Map<String,String> task,HttpS
 			// get the project id from project name
 		  Long foreignkey=taskdao.getProjectId(task.get("selectedProjectName"));
 		  pmodel.setPid(foreignkey);
+		  //set user working on task as owner
+		  String fullName=task.get("taskOwner");
+		  user.setFirstName(fullName.substring(0,fullName.indexOf(" ")));
+		  user.setLastName(fullName.substring(fullName.indexOf(" ")+1,fullName.length()));
 		  
+		  user.setId(taskdao.getUserId(user.getFirstName()));
+		  user.setProject(pmodel);
+		  requestTask.setUser(user);
 		  requestTask.setProject(pmodel);
 		  
 		} catch (ParseException e) {

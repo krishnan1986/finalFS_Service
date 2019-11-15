@@ -13,5 +13,7 @@ public interface TaskOperations {
 	public void updateTask(Task task);
 	
 	public Long getProjectId(String name);
+	
+	public Long getUserId(String name);
 
 }
