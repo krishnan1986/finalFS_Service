@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,37 +20,40 @@ import com.finalFS.model.Project;
 @RestController
 @RequestMapping("/")
 public class ProjectController {
-	
+
 	@Autowired
-	DBOperations dbo; 
-	
+	DBOperations dbo;
+
 	@CrossOrigin(origins = "http://localhost:4200")
-	@PostMapping(path="/addProject")
-	public void addProjectToDB(@RequestBody Map<String, String> project ) throws ParseException
-	{
+	@PostMapping(path = "/addProject")
+	public void addProjectToDB(@RequestBody Map<String, String> project) throws ParseException {
 		// daoObj.addUser(user);
-				Project p = new Project();
-				p.setName(project.get("projectname"));
-				p.setPriority(project.get("priority"));
-				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-				p.setStartDate(format.parse(project.get("StartDate")));
-				p.setEndDate(format.parse(project.get("endDate")));
-				p.setManager(project.get("managerName"));
-				dbo.addProject(p);
+		Project p = new Project();
+		p.setName(project.get("projectname"));
+		p.setPriority(project.get("priority"));
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		if (project.containsKey("StartDate") && project.containsKey("endDate")) {
+			// if(startOpt.isPresent() && endOpt.isPresent()) {
+			if(format.parse(project.get("StartDate")).before(format.parse(project.get("endDate")))) {
+			p.setStartDate(format.parse(project.get("StartDate")));
+			p.setEndDate(format.parse(project.get("endDate")));
+			}
+		}
+	p.setManager(project.get("managerName"));dbo.addProject(p);
+
 	}
-	
+
 	@CrossOrigin(origins = "http://localhost:4200")
 
-	@GetMapping(path="/viewProjects",produces="application/json")
-    //          @RequestMapping(value = "/tasks", method = RequestMethod.GET, produces = "application/json")
-public  List<Project> getProjectsFromUI()
-{ 
+	@GetMapping(path = "/viewProjects", produces = "application/json")
+	// @RequestMapping(value = "/tasks", method = RequestMethod.GET, produces =
+	// "application/json")
+	public List<Project> getProjectsFromUI() {
 
-	List<Project> results =dbo.fetchProjects();
-	//list.setTasks(results);
-  return results;
-	
-}
-	
+		List<Project> results = dbo.fetchProjects();
+		// list.setTasks(results);
+		return results;
+
+	}
 
 }
