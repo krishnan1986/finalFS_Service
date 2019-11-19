@@ -47,6 +47,17 @@ public class DBOpsImpl implements DBOperations {
 	public void updateUser(User user) {
 		// TODO Auto-generated method stub
 		setup();
+	//	session.update(user);
+		
+		String sql = "SELECT id From User where firstName=:fname or lastName=:lName or employeeID=:eid";
+		Query query = session.createQuery(sql);
+		query.setParameter("fname", user.getFirstName());
+		query.setParameter("lName", user.getLastName());
+		query.setParameter("eid", user.getEmployeeID());
+		
+		Long userid= (Long)query.uniqueResult();
+		
+		user.setId(userid);
 		session.update(user);
 		tx.commit();
 		session.close();

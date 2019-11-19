@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.finalFS.dao.DBOperations;
 import com.finalFS.dao.TaskDao;
 import com.finalFS.model.User;
@@ -34,7 +35,7 @@ public class BaseController {
 	public void addUsertoDB(@RequestBody Map<String, String> user) {
 		// daoObj.addUser(user);
 		User userObj = new User();
-		userObj.setEmployeeID(user.get("EmployeeId"));
+		userObj.setEmployeeID(user.get("employeeID"));
 		userObj.setFirstName(user.get("firstName"));
 		userObj.setLastName(user.get("lastName"));
 		daoObj.addUser(userObj);
@@ -48,15 +49,20 @@ public class BaseController {
 	}
 
 	@CrossOrigin(origins = "http://localhost:4200")
-	@PutMapping(path = "/UpdateUser")
-	public void UpdateUser(@RequestBody User user) {
+	//@PutMapping(path = "/UpdateUser",consumes={"application/json"})
+	@RequestMapping(value="/UpdateUser", method=RequestMethod.PUT ,consumes="application/json")
+	public void UpdateUser(@RequestBody Map<String, String> userMap) {
 		// daoObj.addUser(user);
 		/*
 		 * User userObj = new User(); userObj.setEmployeeID(user.get("EmployeeId"));
 		 * userObj.setFirstName(user.get("firstname"));
 		 * userObj.setLastName(user.get("lastname"));
 		 */
-		daoObj.updateUser(user);
+		User userObj = new User();
+		userObj.setEmployeeID(userMap.get("employeeID"));
+		userObj.setFirstName(userMap.get("firstName"));
+		userObj.setLastName(userMap.get("lastName"));
+		daoObj.updateUser(userObj);
 	}
 
 	@CrossOrigin(origins= "http://localhost:4200")
