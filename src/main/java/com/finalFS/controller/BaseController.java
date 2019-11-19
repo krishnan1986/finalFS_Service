@@ -35,8 +35,8 @@ public class BaseController {
 		// daoObj.addUser(user);
 		User userObj = new User();
 		userObj.setEmployeeID(user.get("EmployeeId"));
-		userObj.setFirstName(user.get("firstname"));
-		userObj.setLastName(user.get("lastname"));
+		userObj.setFirstName(user.get("firstName"));
+		userObj.setLastName(user.get("lastName"));
 		daoObj.addUser(userObj);
 
 	}
@@ -78,16 +78,6 @@ public  List<User> getUsersFromUI()
 	
 }
 	
-	@CrossOrigin(origins = "http://localhost:4200")
-	@GetMapping(value="/endTask/{taskname}")
- //@RequestMapping(value = "/endTask/{taskname}", method = RequestMethod.DELETE)
- //@ResponseBody
-public void removeTask(@PathVariable("taskname") String taskName )
-{
-	// find by name 
-	taskdao.deleteTask(taskName);
-	//taskdao.deleteTask(restask);
-}
 	
 	
 	
