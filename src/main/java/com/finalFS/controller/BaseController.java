@@ -97,6 +97,39 @@ public  List<User> getUsersFromUI()
 		return results;
 
 	}
+	@CrossOrigin(origins = "http://localhost:4200")
+	@GetMapping(path="/sortByEDate",produces="application/json")
+	//          @RequestMapping(value = "/tasks", method = RequestMethod.GET, produces = "application/json")
+	public  List<Project> sortByEndDateFromUI()
+	{
+
+		List<Project> results =daoObj.sortByEDate();
+		//list.setTasks(results);
+		return results;
+
+	}
+	@CrossOrigin(origins = "http://localhost:4200")
+	@GetMapping(path="/sortByPrio",produces="application/json")
+	//          @RequestMapping(value = "/tasks", method = RequestMethod.GET, produces = "application/json")
+	public  List<Project> sortByPriorityFromUI()
+	{
+
+		List<Project> results =daoObj.sortByPrio();
+		//list.setTasks(results);
+		return results;
+
+	}
+	@CrossOrigin(origins = "http://localhost:4200")
+	@GetMapping(path="/sortByStatus",produces="application/json")
+	//          @RequestMapping(value = "/tasks", method = RequestMethod.GET, produces = "application/json")
+	public  List<Project> sortByStatusFromUI()
+	{
+
+		List<Project> results =daoObj.sortByStatus();
+		//list.setTasks(results);
+		return results;
+
+	}
 
 
 
