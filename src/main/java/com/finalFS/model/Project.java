@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="project")
@@ -66,6 +68,7 @@ public class Project {
 	private String name;
 	
 	@Column(name="start_date")
+	@Temporal(TemporalType.DATE)
 	private Date startDate;
 	
 	public String getManager() {
@@ -80,6 +83,7 @@ public class Project {
 	private String priority;
 	
 	@Column(name="end_date")
+	@Temporal(TemporalType.DATE)
 	private Date endDate;
 	
 	@Column(name="manager")

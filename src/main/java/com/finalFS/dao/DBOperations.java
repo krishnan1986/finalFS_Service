@@ -10,10 +10,14 @@ public interface DBOperations {
 	public void addUser(User user);
 
 	public User getUserbyid(Long id);
+
+	
+	public Project getProjectbyid(Long id);
 	
 	public void updateUser(User user);
 	
 	public void deleteUser(User user);
+	public void deleteProject(Project user);
 	
 	public void addProject(Project project);
 	public List<Project> fetchProjects();

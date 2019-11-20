@@ -174,4 +174,22 @@ public class DBOpsImpl implements DBOperations {
 		return res;
 	}
 
+
+	@Override
+	public Project getProjectbyid(Long id) {
+		setup();
+		Project p= (Project)session.get(Project.class, id);
+		return p;
+	}
+
+
+	@Override
+	public void deleteProject(Project p) {
+		// TODO Auto-generated method stub
+		setup();
+		session.delete(p);
+		tx.commit();
+		session.close();
+	}
+
 }

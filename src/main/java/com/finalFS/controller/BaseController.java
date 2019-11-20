@@ -73,6 +73,13 @@ public class BaseController {
 		daoObj.deleteUser(dbuser);
 	}
 	
+	@CrossOrigin(origins= "http://localhost:4200")
+	@DeleteMapping(path="/deleteProject/{id}")
+	public void deleteProject(@PathVariable("id") Long id) {
+	 Project p=daoObj.getProjectbyid(id);
+		daoObj.deleteProject(p);
+	}
+	
 	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping(path="/viewUsers",produces="application/json")
     //          @RequestMapping(value = "/tasks", method = RequestMethod.GET, produces = "application/json")
@@ -165,6 +172,21 @@ public  List<User> getUsersFromUI()
 		//list.setTasks(results);
 		return results;
 
+	}
+	
+	@CrossOrigin(origins = "http://localhost:4200")
+	@GetMapping(path = "/searchProject/{id}",produces = "application/json")
+	public ResponseEntity<Project> searchProject(@PathVariable("id") Long id) {
+		return ResponseEntity.ok().body(daoObj.getProjectbyid(id));
+	}
+	
+	@CrossOrigin(origins = "http://localhost:4200")
+	@GetMapping(path = "/getTaskCountByName/{name}",produces = "application/json")
+	public Integer getTaskCountByName(@PathVariable("name") String name)
+	{
+		
+		Long pid = taskdao.getProjectId(name);
+		return taskdao.getTaskCount(pid.toString());
 	}
 
 
