@@ -149,7 +149,7 @@ public  List<User> getUsersFromUI()
 	public  List<User> sortByLnameUI()
 	{
 
-		List<User> results =daoObj.sortByLname();
+		List<User> results =daoObj.sortByLname(); 
 		//list.setTasks(results);
 		return results;
 
