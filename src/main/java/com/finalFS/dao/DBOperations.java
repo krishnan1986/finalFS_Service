@@ -19,14 +19,16 @@ public interface DBOperations {
 	public List<Project> fetchProjects();
 	
 	public List<User> fetchUsers();
+
+	public List<Project> sortBySDate();
+
 	public List<Project> sortByEDate();
 
 	public List<Project> sortByPrio();
 
 	public List<Project> sortByStatus();
 	
-	public List<Project> sortBySDate();
-	
+
 	public List<User> sortByFname();
 	
 	public List<User> sortByLname();

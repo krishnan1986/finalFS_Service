@@ -116,8 +116,17 @@ public class DBOpsImpl implements DBOperations {
 
 		 tx=session.beginTransaction();
 	}
-	
+
+
 	@Override
+	public List<Project> sortBySDate() {
+		setup();
+		String query="from Project order by startDate";
+		List<Project> res=session.createQuery(query).list();
+		return res;
+	}
+
+    @Override
     public List<Project> sortByEDate() {
         setup();
         String query="from Project order by endDate";
@@ -137,17 +146,9 @@ public class DBOpsImpl implements DBOperations {
     public List<Project> sortByStatus() {
         return null;
     }
-    
+
+
     @Override
-	public List<Project> sortBySDate() {
-		setup();
-		String query="from Project order by startDate";
-		List<Project> res=session.createQuery(query).list();
-		return res;
-	}
-
-
-	@Override
 	public List<User> sortByFname() {
 		setup();
 		String query="from User order by firstName";
