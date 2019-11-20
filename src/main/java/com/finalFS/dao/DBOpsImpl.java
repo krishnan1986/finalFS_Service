@@ -116,5 +116,61 @@ public class DBOpsImpl implements DBOperations {
 
 		 tx=session.beginTransaction();
 	}
+	
+	@Override
+    public List<Project> sortByEDate() {
+        setup();
+        String query="from Project order by endDate";
+        List<Project> res=session.createQuery(query).list();
+        return res;
+    }
+
+    @Override
+    public List<Project> sortByPrio() {
+        setup();
+        String query="from Project order by priority";
+        List<Project> res=session.createQuery(query).list();
+        return res;
+    }
+
+    @Override
+    public List<Project> sortByStatus() {
+        return null;
+    }
+    
+    @Override
+	public List<Project> sortBySDate() {
+		setup();
+		String query="from Project order by startDate";
+		List<Project> res=session.createQuery(query).list();
+		return res;
+	}
+
+
+	@Override
+	public List<User> sortByFname() {
+		setup();
+		String query="from User order by firstName";
+		List<User> res=session.createQuery(query).list();
+		return res;
+	}
+
+
+	@Override
+	public List<User> sortByLname() {
+		setup();
+		String query="from User order by lastName";
+		List<User> res=session.createQuery(query).list();
+		return res;
+	}
+
+
+	@Override
+	public List<User> sortByUserid() {
+		setup();
+		String query="from User order by employeeID";
+		List<User> res=session.createQuery(query).list();
+		return res;
+	}
 
 }

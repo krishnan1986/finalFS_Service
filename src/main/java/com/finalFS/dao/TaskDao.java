@@ -17,6 +17,17 @@ import com.finalFS.util.HibernateUtil;
 @Component
 public class TaskDao implements TaskOperations {
 	
+	@Override
+	public Integer getTaskCount(String pid) {
+		// TODO Auto-generated method stub
+		setup();
+		String sql= "SELECT COUNT(*) from Task where PROJECT_ID=:pid";
+		Query query =session.createQuery(sql);
+		query.setParameter("pid",pid);
+		
+		return (Integer) query.uniqueResult();
+	}
+
 	@Autowired
 	HibernateUtil hibernateUtil;
 	

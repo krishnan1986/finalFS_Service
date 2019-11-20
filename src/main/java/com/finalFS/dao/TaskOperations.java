@@ -17,5 +17,7 @@ public interface TaskOperations {
 	public Long getUserId(String name);
 	
 	public List<Task> getTasksByProjectName(String name);
+	
+	public Integer getTaskCount(String pid);
 
 }
