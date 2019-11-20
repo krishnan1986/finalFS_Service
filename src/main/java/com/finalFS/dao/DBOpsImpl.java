@@ -117,4 +117,12 @@ public class DBOpsImpl implements DBOperations {
 		 tx=session.beginTransaction();
 	}
 
+
+	@Override
+	public List<Project> sortBySDate() {
+		setup();
+		String query="from Project order by startDate";
+		List<Project> res=session.createQuery(query).list();
+		return res;
+	}
 }

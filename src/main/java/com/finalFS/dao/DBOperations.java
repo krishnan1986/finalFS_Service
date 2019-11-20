@@ -19,4 +19,6 @@ public interface DBOperations {
 	public List<Project> fetchProjects();
 	
 	public List<User> fetchUsers();
+
+	public List<Project> sortBySDate();
 }

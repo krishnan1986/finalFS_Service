@@ -3,6 +3,7 @@ package com.finalFS.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.finalFS.model.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -83,9 +84,22 @@ public  List<User> getUsersFromUI()
   return results;
 	
 }
-	
-	
-	
-	
-	
+
+
+	@CrossOrigin(origins = "http://localhost:4200")
+	@GetMapping(path="/sortBySDate",produces="application/json")
+	//          @RequestMapping(value = "/tasks", method = RequestMethod.GET, produces = "application/json")
+	public  List<Project> sortProjectFromUI()
+	{
+
+		List<Project> results =daoObj.sortBySDate();
+		//list.setTasks(results);
+		return results;
+
+	}
+
+
+
+
+
 }
